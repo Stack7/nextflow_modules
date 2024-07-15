@@ -17,7 +17,7 @@ input_path_sigprof = "/u/cdslab/kdavydzenka/CLL/input_multisample/"
 
 #input data preprocessing
 def input_processing(data):
-    new_columns = {'Project': "CLL", 'Genome': 'GRCh37', 'Type': "SOMATIC", 'mut_type': "SNP"}
+    new_columns = {'Project': "CC", 'Genome': 'GRCh37', 'Type': "SOMATIC", 'mut_type': "SNP"}
     df = data.assign(**new_columns)
     df['chr'] = df['chr'].astype(str).str[3:]
     df = df.rename(columns={'Indiv': 'Sample', 'chr': 'chrom', 'from': 'pos_start', 'to': 'pos_end'})
@@ -29,10 +29,10 @@ def input_processing(data):
 input_data = input_processing(input_data)
 
 #saving input matrix to txt
-input_data.to_csv('CLL/input_multisample/input_data.txt', sep='\t', index=False, header=True)
+input_data.to_csv('CC/input_multisample/input_data.txt', sep='\t', index=False, header=True)
 
 #mutation's counts matrix generation
-input_matrix = matGen.SigProfilerMatrixGeneratorFunc(project = "CLL", 
+input_matrix = matGen.SigProfilerMatrixGeneratorFunc(project = "CC", 
                                                      reference_genome = "GRCh37", 
                                                      path_to_input_files = input_path_sigprof)
 
